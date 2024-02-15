@@ -1,1 +1,28 @@
+Intuition
+first sort the list and then do sum in a way to get largest perimeter.
 
+Approach
+First we have to consider whether there is any inbuilt function available to make our task easy. then the answer is yes. We can use here 2 functions. 'sort' and 'sum'.
+
+first we have to sort the list.
+
+Then to get the largest perimeter we have to add all numbers and subtract the largest number of the list from it. If the answer is greater than the largest number then the sum of all numbers is our answer.
+
+Otherwise we have to pop(delete) the largest number and do the same things to the second largest number and on.
+
+Code
+class Solution:
+    def largestPerimeter(self, nums: List[int]) -> int:
+        nums.sort()
+        ans = None
+
+        while len(nums) >= 3:
+            if sum(nums) - nums[len(nums) - 1] > nums[len(nums) - 1]:
+                ans  = sum(nums)
+                break
+            else:
+                nums.pop(len(nums) - 1)
+        if ans:
+            return ans
+        else:
+            return -1
